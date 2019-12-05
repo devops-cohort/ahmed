@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+{% extends 'layout.html' %}
+{% block body_content %}
+<h1>{{ current_user.first_name }} {{ current_user.last_name}}'s Playlist</h1>
+        <p>Welcome to this web app</p>
+        {% for song in songs %}
+                <div>
+                        <h3>{{ song.title }}</h3>
+                        <span>by <i>{{ song.author.First_name }}  {{ song.author.last_name }}</i></span>
+                        <span>on the <i>{{ song.date_posted }}</i></span>
+                        <p>{{ song.content }}</p>
+			<a href="playlist/delete/{{ song.id }}">Delete</a>
+
+                </div>
+        {% endfor %}
+{% endblock body_content %}
