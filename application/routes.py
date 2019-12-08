@@ -4,7 +4,9 @@ from application.models import Songs, Users
 from application.forms import SongForm, RegistrationForm, LoginForm, UpdateAccountForm
 from flask_login import login_user, current_user, logout_user, login_required 
 
-
+@app.route('/test')
+def reults():
+    return render_template('index.html')
 
 
 @app.route('/')
