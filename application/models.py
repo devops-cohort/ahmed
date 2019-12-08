@@ -13,15 +13,15 @@ def load_user(id):
 
 class Songs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False, unique=True)
-    content = db.Column(db.String(1000), nullable=False, unique=True)
+    artist = db.Column(db.String(100), nullable=False, unique=True)
+    title = db.Column(db.String(1000), nullable=False, unique=True)
     date_posted = db.Column(db.DateTime, nullable = False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 	
     def __repr__(self):
         return ''.join([
             'User ID ', self.user_id, '\r\n',
-            'Title: ', self.title, '\r\n', self.content,
+            'Title: ', self.artist, '\r\n', self.title
 
         ])
 

@@ -49,8 +49,8 @@ def song():
         form = SongForm()
         if form.validate_on_submit():
                 postData = Songs(
+                        artist = form.artist.data,
                         title = form.title.data,
-                        content = form.content.data,
                         author = current_user
                 )
         

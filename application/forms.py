@@ -8,14 +8,14 @@ from application.models import Users
 
 class SongForm(FlaskForm):
 
-    title = StringField('Title',
+    artist = StringField('Artist',
             validators = [
                 DataRequired(),
                 Length(min=4, max=100)
             ]
     )
 
-    content = StringField('Content',
+    title = StringField('Title',
             validators = [
                 DataRequired(),
                 Length(min=4, max=100)
