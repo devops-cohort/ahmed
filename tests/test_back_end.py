@@ -23,6 +23,7 @@ class TestBase(TestCase):
         db.session.commit()
         db.drop_all()
         db.create_all()
+        #deleting then creating all the apps so its fresh ready for testing.
 
         # create test admin user
         admin = Users(first_name="admin", last_name="testing", email="ahmed@hotmail.com", password="password")
@@ -43,51 +44,55 @@ class TestBase(TestCase):
 
         db.session.remove()
         db.drop_all()
+        
+        #drops all tables after every test
 
 
 class TestApp(TestBase):
+    
+    #test to check that the homepage is accessible. code 200 means it has recieved a positive response
     def test_hompage(self):
         response = self.client.get(url_for('home'))
         self.assertEqual(response.status_code, 200)
 
 
-
+     #test to check that the about page is accessible. code 200 means it has recieved a positive response
     def  test_about(self):
         response = self.client.get(url_for('about'))
         self.assertEqual(response.status_code, 200)
 
-
+    #test to check that the login page is accessible. code 200 means it has recieved a positive response
     def test_login_page(self):
         response = self.client.get(url_for('login'))
         self.assertEqual(response.status_code, 200)
 
     
+    #test to check that the account is not accessible without login. code 302 means it has recieved been rejected.
 
     def test_acount_page(self):
         response = self.client.get(url_for('account'))
         self.assertEqual(response.status_code, 302)
 
+    #test to check that the song page is not accessible without login. code 302 means it has recieved been rejected.
 
     def test_song_page(self):
         response = self.client.get(url_for('song'))
         self.assertEqual(response.status_code,302)
+        
+    #test to check that the account is not accessible without login. code 302 means it has recieved been rejected.
 
     def test_playlist_page(self):
         response = self.client.get(url_for('account'))
         self.assertEqual(response.status_code, 302)
-
-
+        
+        
+    #test to check that the login page is accessible. code 200 means it has recieved a positive response
     def test_register_page(self):
         response = self.client.get(url_for('register'))
         self.assertEqual(response.status_code, 200)
 
 
-    def song_not_logged_in(self):
-        target_url = url_for('song', id=1)
-        redirect_url = url_for('login', next=target_url)
-        response = self.client.get(target_url)
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, redirect_url)
+  
 
 
 
