@@ -16,6 +16,7 @@ def home():
 
 @app.route('/playlist')
 def playlist():
+    #query to be run on this page to show the results of all song posts
     postData =Songs.query.all()
     return render_template('playlist.html', title='Playlist', songs=postData)
 
@@ -28,6 +29,8 @@ def about():
 
 @app.route('/register', methods=['GET','POST'])
 def register():
+    
+    # conditional to check if the current user is authenticated if they are then direct them to the home page
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -39,7 +42,8 @@ def register():
         return redirect(url_for('song'))
     else:
         print(form.errors)
-
+    #conditional to check that the data the user enters is correct with the validations of the Users table and adds them to the user table
+    #then directs them to the song post page.
     return render_template('register.html', title='Register', form=form)
 
 
@@ -121,7 +125,7 @@ def delete_song(id):
     db.session.commit()
 
     return redirect(url_for('playlist'))
-
+#each post will have a delete link under it as it has been set up in the root for every song id. 
 
 
 
