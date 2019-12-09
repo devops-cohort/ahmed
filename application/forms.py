@@ -11,14 +11,14 @@ class SongForm(FlaskForm):
     artist = StringField('Artist',
             validators = [
                 DataRequired(),
-                Length(min=4, max=100)
+                Length(min=2, max=100)
             ]
     )
 
     title = StringField('Title',
             validators = [
                 DataRequired(),
-                Length(min=4, max=100)
+                Length(min=2, max=100)
             ]
     )
 
@@ -30,13 +30,13 @@ class RegistrationForm(FlaskForm):
     first_name = StringField('First Name',
             validators = [
                 DataRequired(),
-                Length(min=4, max=30)
+                Length(min=2, max=30)
             ]
     )
     last_name = StringField('Last Name',
             validators = [
                 DataRequired(),
-                Length(min=4, max=30)
+                Length(min=2, max=30)
             ]
     )
     
@@ -107,7 +107,7 @@ class UpdateAccountForm(FlaskForm):
     first_name = StringField('First Name',
             validators=[ 
                 DataRequired(),
-                Length(min=4, max=30)
+                Length(min=2, max=30)
 
 
             ])
@@ -116,7 +116,7 @@ class UpdateAccountForm(FlaskForm):
     last_name = StringField('Last Name',
             validators= [
                 DataRequired(),
-                Length(min=4, max=30)
+                Length(min=2, max=30)
 
 
             ])
