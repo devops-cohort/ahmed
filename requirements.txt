@@ -1,0 +1,9 @@
+flask
+Flask-SQLAlchemy
+flask-wtf
+flask_bcrypt
+flask_login
+pymysql
+gunicorn
+flask_testing
+pytest

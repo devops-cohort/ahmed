@@ -1,0 +1,14 @@
+#env variables taken out 
+
+sudo apt-get update
+
+sudo apt install -y python3
+sudo apt install -y python3-pip
+sudo apt install -y python3-venv
+
+python3 -m venv venv
+
+. venv/bin/activate
+pip3 install -r requirements.txt
+pytest
+gunicorn --bind=0.0.0.0:5000 --workers=4 application:app
