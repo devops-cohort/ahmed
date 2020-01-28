@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: musiclibrary-home
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Gi
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: musiclibrary
+  labels: 
+    app: musiclibrary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: musiclibrary
+  template:
+    metadata:
+      labels:
+        app: musiclibrary
+    spec:
+      containers:
+      - name: musiclibrary
+        image: gcr.io/speedy-victory-198818/ahmed
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: musiclibrary
+spec:
+  selector:
+    app: musiclibrary
+  ports: 
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: LoadBalancer
